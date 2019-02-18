@@ -1,2 +1,4 @@
 database/
-project/
+project/.vs
+project/*/bin
+project/*/obj
