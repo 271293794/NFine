@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "Index";
-    ViewBag.SearchPlaceholder = "输入账户/姓名/手机";
+    ViewBag.SearchPlaceholder = "输入账户/姓名/手机号码";
     Layout = "~/Views/Shared/_IndexTopPanel.cshtml";
 }
 <script>
@@ -88,7 +88,7 @@
         $.modalOpen({
             id: "Form",
             title: "修改用户",
-            url: `${$(ele).attr("data-url")}?keyValue=`,
+            url: `${$(ele).attr("data-url")}?keyValue=${keyValue}`,
             width: "700px",
             height: "510px",
             callBack: function (iframeId) {

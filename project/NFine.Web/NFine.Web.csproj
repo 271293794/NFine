@@ -503,11 +503,6 @@
     <Content Include="Areas\SystemManage\Views\Area\Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="C:\Users\27129\Desktop\Index.cshtml">
-      <Link>Areas\SystemManage\Views\User\Index.cshtml</Link>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
@@ -617,6 +612,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\SystemManage\Views\User\Info.cshtml" />
+    <Content Include="Areas\SystemManage\Views\User\Index.cshtml" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
     <Content Include="Views\Shared\_IndexTopPanel.cshtml" />
   </ItemGroup>
