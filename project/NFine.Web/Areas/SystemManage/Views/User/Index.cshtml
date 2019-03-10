@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Index";
+    ViewBag.SearchPlaceholder = "输入账户/姓名/手机";
     Layout = "~/Views/Shared/_IndexTopPanel.cshtml";
 }
 <script>
@@ -70,11 +71,11 @@
             }).trigger('reloadGrid');
         });
     }
-    function btn_add() {
+    function btn_add(ele) {
         $.modalOpen({
             id: "Form",
             title: "新增用户",
-            url: "/SystemManage/User/Form",
+            url: `${$(ele).attr("data-url")}`,
             width: "700px",
             height: "510px",
             callBack: function (iframeId) {
@@ -82,12 +83,12 @@
             }
         });
     }
-    function btn_edit() {
+    function btn_edit(ele) {
         var keyValue = $("#gridList").jqGridRowValue().F_Id;
         $.modalOpen({
             id: "Form",
             title: "修改用户",
-            url: "/SystemManage/User/Form?keyValue=" + keyValue,
+            url: `${$(ele).attr("data-url")}?keyValue=`,
             width: "700px",
             height: "510px",
             callBack: function (iframeId) {
@@ -95,34 +96,34 @@
             }
         });
     }
-    function btn_delete() {
+    function btn_delete(ele) {
         $.deleteForm({
-            url: "/SystemManage/User/DeleteForm",
+            url: `${$(ele).attr("data-url")}`,
             param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
             success: function () {
                 $.currentWindow().$("#gridList").trigger("reloadGrid");
             }
         })
     }
-    function btn_details() {
+    function btn_details(ele) {
         var keyValue = $("#gridList").jqGridRowValue().F_Id;
         $.modalOpen({
             id: "Details",
             title: "查看用户",
-            url: "/SystemManage/User/Details?keyValue=" + keyValue,
+            url: `${$(ele).attr("data-url")}?keyValue=` + keyValue,
             width: "700px",
             height: "550px",
             btn: null,
         });
     }
-    function btn_revisepassword() {
+    function btn_revisepassword(ele) {
         var keyValue = $("#gridList").jqGridRowValue().F_Id;
         var Account = $("#gridList").jqGridRowValue().F_Account;
         var RealName = $("#gridList").jqGridRowValue().F_RealName;
         $.modalOpen({
             id: "RevisePassword",
             title: '重置密码',
-            url: '/SystemManage/User/RevisePassword?keyValue=' + keyValue + "&account=" + escape(Account) + '&realName=' + escape(RealName),
+            url: `${$(ele).attr("data-url")}?keyValue=` + keyValue + "&account=" + escape(Account) + '&realName=' + escape(RealName),
             width: "450px",
             height: "260px",
             callBack: function (iframeId) {
@@ -130,12 +131,12 @@
             }
         });
     }
-    function btn_disabled() {
+    function btn_disabled(ele) {
         var keyValue = $("#gridList").jqGridRowValue().F_Id;
         $.modalConfirm("注：您确定要【禁用】该项账户吗？", function (r) {
             if (r) {
                 $.submitForm({
-                    url: "/SystemManage/User/DisabledAccount",
+                    url: `${$(ele).attr("data-url")}`,
                     param: { keyValue: keyValue },
                     success: function () {
                         $.currentWindow().$("#gridList").trigger("reloadGrid");
@@ -144,12 +145,12 @@
             }
         });
     }
-    function btn_enabled() {
+    function btn_enabled(ele) {
         var keyValue = $("#gridList").jqGridRowValue().F_Id;
         $.modalConfirm("注：您确定要【启用】该项账户吗？", function (r) {
             if (r) {
                 $.submitForm({
-                    url: "/SystemManage/User/EnabledAccount",
+                    url: `${$(ele).attr("data-url")}`,
                     param: { keyValue: keyValue },
                     success: function () {
                         $.currentWindow().$("#gridList").trigger("reloadGrid");
