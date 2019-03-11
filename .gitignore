@@ -2,3 +2,4 @@ database/
 project/.vs
 project/*/bin
 project/*/obj
+project/UpgradeLog.htm

@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.SearchPlaceholder = "模块名称";
+    Layout = "~/Views/Shared/_IndexTopPanel.cshtml";
 }
 <script>
     $(function () {
@@ -65,11 +65,11 @@
             }).trigger('reloadGrid');
         });
     }
-    function btn_add() {
+    function btn_add(ele) {
         $.modalOpen({
             id: "Form",
             title: "新增菜单",
-            url: "/SystemManage/Module/Form",
+            url: `${$(ele).attr("data-url")}`,
             width: "700px",
             height: "440px",
             callBack: function (iframeId) {
@@ -77,12 +77,12 @@
             }
         });
     }
-    function btn_edit() {
+    function btn_edit(ele) {
         var keyValue = $("#gridList").jqGridRowValue().F_Id;
         $.modalOpen({
             id: "Form",
             title: "修改菜单",
-            url: "/SystemManage/Module/Form?keyValue=" + keyValue,
+            url: `${$(ele).attr("data-url")}?keyValue=${keyValue}`,
             width: "700px",
             height: "440px",
             callBack: function (iframeId) {
@@ -90,9 +90,9 @@
             }
         });
     }
-    function btn_delete() {
+    function btn_delete(ele) {
         $.deleteForm({
-            url: "/SystemManage/Module/DeleteForm",
+            url: `${$(ele).attr("data-url")}`,
             param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
             success: function () {
                 $.currentWindow().$("#gridList").resetSelection();
@@ -100,23 +100,23 @@
             }
         })
     }
-    function btn_details() {
+    function btn_details(ele) {
         var keyValue = $("#gridList").jqGridRowValue().F_Id;
         $.modalOpen({
             id: "Details",
             title: "查看菜单",
-            url: "/SystemManage/Module/Details?keyValue=" + keyValue,
+            url: `${$(ele).attr("data-url")}?keyValue=${keyValue}`,
             width: "700px",
             height: "490px",
             btn: null,
         });
     }
-    function btn_modulebutton() {
-        var keyValue = $("#gridList").jqGridRowValue().F_Id;
+    function btn_modulebutton(ele) {
+        var moduleId = $("#gridList").jqGridRowValue().F_Id;
         $.modalOpen({
             id: "modulebutton",
             title: "系统按钮",
-            url: "/SystemManage/ModuleButton/Index?moduleId=" + keyValue,
+            url: `${$(ele).attr("data-url")}?moduleId=${moduleId}`,
             width: "950px",
             height: "600px",
             btn: null,
@@ -124,42 +124,7 @@
     }
 </script>
 
-<div class="topPanel">
-    <div class="toolbar">
-        <div class="btn-group">
-            <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
-        </div>
-        <div class="btn-group">
-            <a id="NF-add" authorize="yes" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建菜单</a>
-        </div>
-        <div class="operate">
-            <ul class="nav nav-pills">
-                <li class="first">已选中<span>1</span>项</li>
-                <li><a id="NF-edit" authorize="yes" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改菜单</a></li>
-                <li><a id="NF-delete" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除菜单</a></li>
-                <li><a id="NF-Details" authorize="yes" onclick="btn_details()"><i class="fa fa-search-plus"></i>查看菜单</a></li>
-                <li class="split"></li>
-                <li><a id="NF-modulebutton" authorize="yes" onclick="btn_modulebutton()"><i class="fa fa-gavel"></i>按钮管理</a></li>
-            </ul>
-            <a href="javascript:;" class="close"></a>
-        </div>
-        <script>$('.toolbar').authorizeButton()</script>
-    </div>
-    <div class="search">
-        <table>
-            <tr>
-                <td>
-                    <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="请输入要查询关键字" style="width: 200px;">
-                        <span class="input-group-btn">
-                            <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
-                        </span>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
-</div>
+
 <div class="gridPanel">
     <table id="gridList"></table>
 </div>

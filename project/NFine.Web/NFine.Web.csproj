@@ -452,9 +452,6 @@
     <Content Include="Areas\SystemManage\Views\Module\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\SystemManage\Views\ModuleButton\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Areas\SystemManage\Views\ModuleButton\Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -613,6 +610,11 @@
   <ItemGroup>
     <Content Include="Areas\SystemManage\Views\User\Info.cshtml" />
     <Content Include="Areas\SystemManage\Views\User\Index.cshtml" />
+    <Content Include="Areas\SystemManage\Views\ModuleButton\Index.cshtml" />
+    <Content Include="Areas\SystemManage\Views\DictionaryType\Details.cshtml" />
+    <Content Include="Areas\SystemManage\Views\DictionaryType\Form.cshtml" />
+    <Content Include="Areas\SystemManage\Views\DictionaryType\Index.cshtml" />
+    <Content Include="Areas\SystemManage\Views\ItemsData\IndexPart.cshtml" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
     <Content Include="Views\Shared\_IndexTopPanel.cshtml" />
   </ItemGroup>
